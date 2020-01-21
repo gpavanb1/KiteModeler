@@ -11,8 +11,8 @@ class BridleGeometry:
     def __init__(self, b, k, h):
         try:
             # TODO : Raise error if negative b, k, h
-            if b > k:
-                raise ValueError("Bridle is greater than Knot")
+            if b <= k:
+                raise ValueError("Knot must be larger than bridle")
             self.B = b
             self.K = k
             self.H = h

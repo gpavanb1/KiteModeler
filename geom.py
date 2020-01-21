@@ -1,5 +1,6 @@
 import math
 
+
 class DiamondGeometry:
     def __init__(self, h1, h2, w1, t=0):
         self.h1 = h1
@@ -8,6 +9,9 @@ class DiamondGeometry:
         self.AR = self.aspect_ratio()
         # Tail length
         self.t = t
+
+    def h(self):
+        return self.h1 + self.h2
 
     def surface_area(self):
         return 0.5 * (self.h1 + self.h2) * self.w1
@@ -28,7 +32,7 @@ class DiamondGeometry:
     # Source: https://www.grc.nasa.gov/WWW/K-12/airplane/kitedrag.html
     def cd(self, a):
         Cdo = 1.28 * math.sin(a)
-        return Cdo + pow(self.Cl(), 2) / (.7 * math.pi * self.AR)
+        return Cdo + pow(self.cl(a), 2) / (.7 * math.pi * self.AR)
 
     # Area-weighted average of triangle centroids
     def cp(self):

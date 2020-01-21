@@ -5,7 +5,7 @@ import math
 # Source for Earth
 # https://www.grc.nasa.gov/WWW/K-12/airplane/atmosmet.html
 def earth_pressure(h):
-    return 101.29 * math.exp(earth_temperature(h)/288.08, 5.256)
+    return 101.29 * pow(earth_temperature(h) / 288.08, 5.256)
 
 
 def earth_temperature(h):
