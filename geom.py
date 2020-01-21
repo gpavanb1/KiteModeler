@@ -10,7 +10,7 @@ class DiamondGeometry:
         self.t = t
 
     def surface_area(self):
-        return 0.5*(self.h1 + self.h2)*self.w1
+        return 0.5 * (self.h1 + self.h2) * self.w1
 
     def frame(self):
         return self.h1 + self.h2 + self.w1
@@ -28,5 +28,9 @@ class DiamondGeometry:
     # Source: https://www.grc.nasa.gov/WWW/K-12/airplane/kitedrag.html
     def cd(self, a):
         Cdo = 1.28 * math.sin(a)
-        return Cdo + pow(self.Cl(), 2)/ (.7 * math.pi * self.AR)
+        return Cdo + pow(self.Cl(), 2) / (.7 * math.pi * self.AR)
+
+    # Area-weighted average of triangle centroids
+    def cp(self):
+        return 0.5 * (self.h1 + self.h2) + self.h2 / 3
 

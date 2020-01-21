@@ -1,6 +1,7 @@
 import math
 from scipy.optimize import fsolve
 
+
 class Dashboard:
     def __init__(self, geom, bridle, fly, compo):
         self.geom = geom
@@ -19,7 +20,7 @@ class Dashboard:
 
         # Center of pressure and gravity
         self._cg = self.cg()
-        self._cp = self.cp()
+        self._cp = self.geom.cp()
 
         # Geometric parameters
         self._surface_area = self.geom.surface_area()
@@ -61,10 +62,10 @@ class Dashboard:
 
         # Integration constants
         c1 = math.asin((L - g - W) / D)
-        c2 = -(D / p)*math.cosh(c1)
+        c2 = -(D / p) * math.cosh(c1)
 
         # Source: https://www.grc.nasa.gov/WWW/K-12/airplane/kitesag.html
-        return c2 + (D / p)*math.cosh(p * x/ D + c1)
+        return c2 + (D / p) * math.cosh(p * x / D + c1)
 
     def range(self):
         # Unit line weight
@@ -121,7 +122,5 @@ class Dashboard:
         h_tail = - self.geom.t / 2
         dot_prod = w_surf * h_surf + w_frameH * h_frameH + \
                    w_frameV * h_frameV + w_tail * h_tail
-        return dot_prod/self._weight
+        return dot_prod / self._weight
 
-    def cp(self):
-        pass
