@@ -8,14 +8,13 @@ def knot_angle(b, k, h):
 
 
 class BridleGeometry:
-    def __init__(self, b, k, t, h):
+    def __init__(self, b, k, h):
         try:
-            # TODO : Raise error if negative b, k, t, h
+            # TODO : Raise error if negative b, k, h
             if b > k:
                 raise ValueError("Bridle is greater than Knot")
             self.B = b
             self.K = k
-            self.T = t
             self.H = h
             self.A = knot_angle(b, k, h)
             self.Xb = k*math.cos(self.A)
