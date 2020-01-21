@@ -11,16 +11,26 @@ class Dashboard:
         self._lift = self.lift()
         self._drag = self.drag()
         self._weight = self.kite_weight()
-        self._tension =
+
+        # Source : https://www.grc.nasa.gov/WWW/K-12/airplane/kitefor.html
+        self._horiz_tension = self._drag
+        self._vert_tension = self._lift - self._weight
+        self._tension = math.sqrt(pow(self._horiz_tension, 2) + pow(self._vert_tension, 2))
+
+        # Center of pressure and gravity
         self._cg = self.cg()
-        self._cp =
+        self._cp = self.cp()
+
+        # Geometric parameters
         self._surface_area = self.geom.surface_area()
         self._frame = self.geom.frame()
+
         # AoA - angle of attack
         # Solve such that torque is zero
         self._aoa_no_torque = fsolve(self.torque, 0.0)
         self._range = self.range()
         self._height = self.height()
+
         # Get sea level properties
         self.pressure = fly.env.pressure(0)
         self.temperature = fly.env.temperature(0)
@@ -68,7 +78,6 @@ class Dashboard:
 
         # Integration constants
         c1 = math.asinh((L - g - W) / D)
-        c2 = -(D / p) * math.cosh(c1)
 
         # Source: https://www.grc.nasa.gov/WWW/K-12/airplane/kitesag.html
         return (D / p) * (math.asinh((L - W) / D) - math.asinh((L - g - W) / D))
