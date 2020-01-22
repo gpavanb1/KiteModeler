@@ -17,8 +17,8 @@ class BridleGeometry:
             self.K = k
             self.H = h
             self.A = knot_angle(b, k, h)
-            self.Xb = k*math.cos(self.A)
-            self.Yb = k*math.sin(self.A)
+            self.Xb = k*math.sin(self.A)
+            self.Yb = k*math.cos(self.A)
 
         except ValueError as e:
             print(e.error)

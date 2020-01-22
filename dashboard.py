@@ -22,15 +22,14 @@ class Dashboard:
         # CG calculation uses cp for surface
         self._cg = self.cg()
 
-
         # Geometric parameters
         self._surface_area = self.geom.surface_area()
         self._frame = self.geom.frame()
 
         # Solve such that torque is zero
-        min_func = lambda x: abs(self.torque(x))
-        result = minimize_scalar(min_func, bounds=[0, math.pi / 2])
-        print(result)
+        self.min_func = lambda x: abs(self.torque(x))
+        bounds = (math.pi / 180.0, math.pi / 2)
+        result = minimize_scalar(self.min_func, bounds=bounds, method='bounded')
         self._aoa_no_torque = result.x
         self._aoa_no_torque_degrees = self._aoa_no_torque * 180 / math.pi
 
@@ -40,7 +39,7 @@ class Dashboard:
 
         # Source : https://www.grc.nasa.gov/WWW/K-12/airplane/kitefor.html
         self._horiz_tension = self._drag
-        self._vert_tension = self._lift - self._weight
+        self._vert_tension = self.vertical_tension()
         self._tension = math.sqrt(pow(self._horiz_tension, 2) + pow(self._vert_tension, 2))
 
         # Height and range
@@ -94,6 +93,14 @@ class Dashboard:
 
         return T
 
+    def vertical_tension(self):
+        # Unit line weight
+        p = self.compo.line.density
+        # Line length
+        s = self.fly.line
+        g = s * p
+        return self._lift - g - self._weight
+
     def catenary_equation(self, x):
         # Unit line weight
         p = self.compo.line.density
@@ -137,7 +144,8 @@ class Dashboard:
 
     def cg(self):
         w_surf = self.compo.surface.density * self.geom.surface_area()
-        h_surf = self.geom.cp()
+        # Area-weighted average of triangle centroids
+        h_surf = (self.geom.h1 + 2 * self.geom.h2) / 3
         w_frameH = self.compo.frame.density * self.geom.w1
         h_frameH = self.geom.h2
         w_frameV = self.compo.frame.density * (self.geom.h1 + self.geom.h2)

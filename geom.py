@@ -34,7 +34,7 @@ class DiamondGeometry:
         Cdo = 1.28 * math.sin(a)
         return Cdo + pow(self.cl(a), 2) / (.7 * math.pi * self.AR)
 
-    # Area-weighted average of triangle centroids
+
     def cp(self):
         return 0.5 * (self.h1 + self.h2) + self.h2 / 3
 
