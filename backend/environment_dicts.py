@@ -1,5 +1,4 @@
-from environment import Environment
-import math
+from .environment import Environment
 
 
 # Source for Earth

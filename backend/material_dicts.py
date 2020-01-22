@@ -1,4 +1,4 @@
-from material import Material
+from .material import Material
 
 SurfaceMaterials = {
     "Plastic": Material(0.0020881519, "g/cm2"),

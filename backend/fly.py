@@ -1,4 +1,4 @@
-from environment_dicts import Environments
+from .environment_dicts import Environments
 
 
 class FlyParameters:
