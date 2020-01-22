@@ -1,5 +1,4 @@
 from backend.api import solve
-from backend.helper import  dotdict
 
 
 inp = {
@@ -18,5 +17,4 @@ inp = {
     'line': "Nylon"
 }
 
-inp = dotdict(inp)
 print(solve(inp))
