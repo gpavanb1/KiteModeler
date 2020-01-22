@@ -1,12 +1,22 @@
-from backend.geom import DiamondGeometry
-from backend.bridle import BridleGeometry
-from backend.fly import FlyParameters
-from backend.composition import Composition
-from backend.dashboard import Dashboard
+from backend.api import solve
+from backend.helper import  dotdict
 
-geom = DiamondGeometry(12.7, 25.4, 25.4)
-bridle = BridleGeometry(39.37, 30.48, geom.h())
-fly = FlyParameters(3.048, 0.0, 30.48, "Earth")
-compo = Composition("Plastic", "1/4 Balsa", "1 in Plastic", "Nylon")
-dashboard = Dashboard(geom, bridle, fly, compo)
-print(dashboard.__dict__)
+
+inp = {
+    'h1': 12.7,
+    'h2': 25.4,
+    'w1': 25.4,
+    'B': 39.37,
+    'K': 30.48,
+    'wind_speed': 3.048,
+    'altitude': 0.0,
+    'line_length': 30.48,
+    'env_name': "Earth",
+    'surface': "Plastic",
+    'frame': "1/4 Balsa",
+    'tail': "1 in Plastic",
+    'line': "Nylon"
+}
+
+inp = dotdict(inp)
+print(solve(inp))
