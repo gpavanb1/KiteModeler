@@ -1,5 +1,5 @@
 import math
-from scipy.optimize import fsolve
+from scipy.optimize import minimize_scalar
 
 
 class Dashboard:
@@ -9,19 +9,29 @@ class Dashboard:
         self.fly = fly
         self.compo = compo
 
+        # Get sea level properties
+        self.pressure = self.fly.env.pressure(0)
+        self.temperature = self.fly.env.temperature(0)
+        self.density = self.fly.env.density(0)
+
         # Weight
         self._weight = self.kite_weight()
 
         # Center of pressure and gravity
-        self._cg = self.cg()
         self._cp = self.geom.cp()
+        # CG calculation uses cp for surface
+        self._cg = self.cg()
+
 
         # Geometric parameters
         self._surface_area = self.geom.surface_area()
         self._frame = self.geom.frame()
 
         # Solve such that torque is zero
-        self._aoa_no_torque = fsolve(self.torque, 0.0)[0]
+        min_func = lambda x: abs(self.torque(x))
+        result = minimize_scalar(min_func, bounds=[0, math.pi / 2])
+        print(result)
+        self._aoa_no_torque = result.x
         self._aoa_no_torque_degrees = self._aoa_no_torque * 180 / math.pi
 
         # Calculate corresponding lift and drag
@@ -37,23 +47,27 @@ class Dashboard:
         self._range = self.range()
         self._height = self.height()
 
-        # Get sea level properties
-        self.pressure = fly.env.pressure(0)
-        self.temperature = fly.env.temperature(0)
-
     def lift(self, a):
         cl = self.geom.cl(a)
-        rho = self.compo.surface.density
-        A = self.geom.surface_area()
+        rho = self.density
+        # Convert to m2
+        A = 1.e-4 * self.geom.surface_area()
         V = self.fly.wind_speed
-        return cl * A * rho * V * V / 2
+        # Convert to gram force
+        f = cl * A * rho * V * V / 2
+        f = 1.e3 * (f / 9.8)
+        return f
 
     def drag(self, a):
         cd = self.geom.cd(a)
-        rho = self.compo.surface.density
-        A = self.geom.surface_area()
+        rho = self.density
+        # Convert to m2
+        A = 1.e-4 * self.geom.surface_area()
         V = self.fly.wind_speed
-        return cd * A * rho * V * V / 2
+        # Convert to gram force
+        f = cd * A * rho * V * V / 2
+        f = 1.e3 * (f / 9.8)
+        return f
 
     def kite_weight(self):
         w_surf = self.compo.surface.density * self.geom.surface_area()
@@ -123,7 +137,7 @@ class Dashboard:
 
     def cg(self):
         w_surf = self.compo.surface.density * self.geom.surface_area()
-        h_surf = (self.geom.h1 + self.geom.h2) / 2
+        h_surf = self.geom.cp()
         w_frameH = self.compo.frame.density * self.geom.w1
         h_frameH = self.geom.h2
         w_frameV = self.compo.frame.density * (self.geom.h1 + self.geom.h2)
@@ -133,4 +147,3 @@ class Dashboard:
         dot_prod = w_surf * h_surf + w_frameH * h_frameH + \
                    w_frameV * h_frameV + w_tail * h_tail
         return dot_prod / self._weight
-
