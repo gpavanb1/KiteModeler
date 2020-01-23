@@ -4,7 +4,11 @@ import math
 
 
 def knot_angle(b, k, h):
-    return math.acos((k*k + h*h - (b - k)*(b - k))/(2*k*h))
+    ret = (k*k + h*h - (b - k)*(b - k))/(2*k*h)
+    if abs(ret) > 1:
+        return 0.0
+    else:
+        return math.acos(ret)
 
 
 class BridleGeometry:
@@ -21,4 +25,4 @@ class BridleGeometry:
             self.Yb = k*math.cos(self.A)
 
         except ValueError as e:
-            print(e.error)
+            print(e)
