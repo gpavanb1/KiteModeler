@@ -7,6 +7,7 @@ def slider_and_label(_id, _min, _max, _step, label):
         html.H4(label + ":"),
         dcc.Slider(
             id=_id,
+            className='slider',
             min=_min,
             max=_max,
             step=_step,
