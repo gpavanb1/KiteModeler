@@ -17,3 +17,16 @@ def slider_and_label(_id, _min, _max, _step, label, _value=None):
             tooltip={'always_visible': True},
             value=_value)
     ])
+
+
+def dropdown_and_label(_id, _options, _value, label):
+    return html.Div([
+        html.H4(label + ":"),
+        dcc.Dropdown(
+            id=_id,
+            className='dropdown',
+            options=_options,
+            value=_value,
+            clearable=False
+        )
+    ])

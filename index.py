@@ -5,6 +5,7 @@ import frontend.callbacks
 from frontend.geometry import geometry_components
 from frontend.bridle import bridle_components
 from frontend.fly import fly_components
+from frontend.material import material_components
 
 from app import app
 
@@ -23,8 +24,12 @@ app.layout = html.Div([
             dcc.Tab(label='Fly', value='fly', children=[html.Div([
                 html.H3('Fly'),
                 fly_components
+            ])]),
+            dcc.Tab(label='Material', value='material', children=[html.Div([
+                html.H3('Material'),
+                material_components
             ])])
-        ], id='tabs'),
+        ], id='tabs', value='geometry'),
     html.Div(id='tabs-content'),
     html.Div(id='dashboard-content')
 ])
