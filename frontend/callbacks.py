@@ -2,6 +2,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from app import app
+from backend.api import solve
 
 
 def construct_input(args):
@@ -39,6 +40,7 @@ def construct_input(args):
                ])
 def update_inputs(*args):
     inp = construct_input(args)
+    out = solve(inp)
     return html.Div([
-        html.H4(str(inp))
+        html.H4(str(out))
     ])
