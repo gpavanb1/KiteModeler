@@ -7,6 +7,7 @@ slider_altitude = slider_and_label('altitude', 0, 5000, 20, 'Altitude (m)', 0)
 slider_line_length = slider_and_label('line_length', 0, 2000, 10, 'Line Length (m)', 500)
 
 fly_components = html.Div([
+    html.Br(),
     slider_wind_speed,
     slider_altitude,
     slider_line_length

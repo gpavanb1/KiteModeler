@@ -1,3 +1,4 @@
+import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 
@@ -12,26 +13,26 @@ from app import app
 
 app.layout = html.Div([
     html.H1(id='heading', children='Kite Modeler - Reboot'),
-    dcc.Tabs([
+    html.Br(),
+    html.Div(id='dashboard-content'),
+    html.Br(),
+    dbc.Container([
+            dcc.Tabs([
             dcc.Tab(label='Geometry', value='geometry', children=[html.Div([
-                html.H3('Geometry'),
                 geometry_components
             ])]),
             dcc.Tab(label='Bridle', value='bridle', children=[html.Div([
-                html.H3('Bridle'),
                 bridle_components
             ])]),
             dcc.Tab(label='Fly', value='fly', children=[html.Div([
-                html.H3('Fly'),
                 fly_components
             ])]),
             dcc.Tab(label='Material', value='material', children=[html.Div([
-                html.H3('Material'),
                 material_components
             ])])
-        ], id='tabs', value='geometry'),
-    html.Div(id='tabs-content'),
-    html.Div(id='dashboard-content')
+            ], id='tabs', value='geometry'),
+            html.Div(id='tabs-content')
+    ])
 ])
 
 

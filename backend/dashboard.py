@@ -10,9 +10,9 @@ class Dashboard:
         self.compo = compo
 
         # Get sea level properties
-        self.pressure = self.fly.env.pressure(0)
-        self.temperature = self.fly.env.temperature(0)
-        self.density = self.fly.env.density(0)
+        self.pressure = self.fly.env.pressure(self.fly.altitude)
+        self.temperature = self.fly.env.temperature(self.fly.altitude)
+        self.density = self.fly.env.density(self.fly.altitude)
 
         # Weight
         self._weight = self.kite_weight()

@@ -14,7 +14,7 @@ def slider_and_label(_id, _min, _max, _step, label, _value=None):
             min=_min,
             max=_max,
             step=_step,
-            tooltip={'always_visible': True},
+            tooltip={'always_visible': False},
             value=_value)
     ])
 
@@ -28,5 +28,6 @@ def dropdown_and_label(_id, _options, _value, label):
             options=_options,
             value=_value,
             clearable=False
-        )
+        ),
+        html.Br()
     ])

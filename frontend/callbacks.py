@@ -1,4 +1,4 @@
-import dash_html_components as html
+from .dashboard import create
 from dash.dependencies import Input, Output
 
 from app import app
@@ -74,6 +74,4 @@ def update_h1_min(b, k, h1):
 def update_inputs(*args):
     inp = construct_input(args)
     out = solve(inp)
-    return html.Div([
-        html.H4(str(out))
-    ])
+    return create(out)

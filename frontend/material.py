@@ -35,6 +35,7 @@ dropdown_tail = dropdown_and_label('tail', options_tail, '1 in Plastic', 'Tail')
 dropdown_line = dropdown_and_label('line', options_line, 'Nylon', 'Line')
 
 material_components = html.Div([
+    html.Br(),
     dropdown_surface,
     dropdown_frame,
     dropdown_tail,

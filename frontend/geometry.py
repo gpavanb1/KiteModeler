@@ -7,6 +7,7 @@ slider_h2 = slider_and_label('h2', 2.0, 40, 0.5, 'Frame Intersection to Bottom (
 slider_w1 = slider_and_label('w1', 2.0, 40, 0.5, 'Side-to-Side (W1 - cm)', 25.4)
 
 geometry_components = html.Div([
+    html.Br(),
     slider_h1,
     slider_h2,
     slider_w1
