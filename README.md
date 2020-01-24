@@ -2,6 +2,8 @@
 
 ![Made with Love in India](https://madewithlove.org.in/badge.svg)
 
+![img](assets/logo.png)
+
 This repository contains the open-source back-end and front-end
 code for KiteModeler-Reboot, which is a modern
 version of [KiteModeler](https://www.grc.nasa.gov/WWW/K-12/airplane/kiteprog.html) from NASA Glenn.
