@@ -22,6 +22,10 @@ pip install -r requirements.txt
 python index.py
 ```
 
+## Sample
+
+<img src="sample/sample.png" width="600">
+
 ## Whom to contact?
 
 Please direct your queries to [gpavanb1](http://github.com/gpavanb1)
