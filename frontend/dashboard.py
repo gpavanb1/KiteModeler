@@ -17,7 +17,12 @@ def create(inp):
                             html.H4("Angle of attack (deg)" + " " + res['_aoa_no_torque_degrees']),
                             html.H4("Pressure (kPa)" + " " + res['pressure'])
                         ],
-                        className='md-8',
+                        className='md-5',
+                    ),
+                    dbc.Col(
+                        [
+                            html.Img(id='image', src="", width="300px", height="300px")
+                        ]
                     ),
                     dbc.Col(
                         [
@@ -28,7 +33,7 @@ def create(inp):
                             html.H4("Height (m)" + " " + res['_height']),
                             html.H4("Temperature (K)" + " " + res['temperature'])
                         ],
-                        className='md-8'
+                        className='md-5'
                     )
                 ]
             )

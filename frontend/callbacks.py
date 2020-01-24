@@ -1,3 +1,5 @@
+import base64
+
 from .dashboard import create
 from dash.dependencies import Input, Output
 
@@ -77,3 +79,16 @@ def update_inputs(*args):
     inp = construct_input(args)
     out = solve(inp)
     return create(out)
+
+
+@app.callback(Output('image', 'src'),
+              [Input('tabs', 'value')])
+def update_image(val):
+    if val == 'geometry':
+        return '/static/geometry.png'
+    elif val == 'bridle':
+        return '/static/bridle.png'
+    elif val == 'fly':
+        return '/static/fly.png'
+    elif val == 'material':
+        return '/static/material.png'
