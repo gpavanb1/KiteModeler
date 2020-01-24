@@ -1,5 +1,6 @@
 from .helper import slider_and_label
 import dash_html_components as html
+import dash_bootstrap_components as dbc
 
 
 slider_wind_speed = slider_and_label('wind_speed', 0, 10, 0.05, 'Wind Speed (m/s)', 3.0)
@@ -8,7 +9,20 @@ slider_line_length = slider_and_label('line_length', 0, 2000, 10, 'Line Length (
 
 fly_components = html.Div([
     html.Br(),
-    slider_wind_speed,
-    slider_altitude,
-    slider_line_length
+    dbc.Row([
+        dbc.Col([
+            slider_wind_speed
+        ]),
+        dbc.Col([
+            slider_altitude,
+        ])
+    ]),
+    dbc.Row([
+        dbc.Col([
+            slider_line_length
+        ]),
+        dbc.Col([
+
+        ])
+    ])
 ])

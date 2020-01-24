@@ -1,5 +1,6 @@
 from .helper import dropdown_and_label
 import dash_html_components as html
+import dash_bootstrap_components as dbc
 
 options_surface = [
     {'label': "Plastic", 'value': "Plastic"},
@@ -36,8 +37,20 @@ dropdown_line = dropdown_and_label('line', options_line, 'Nylon', 'Line')
 
 material_components = html.Div([
     html.Br(),
-    dropdown_surface,
-    dropdown_frame,
-    dropdown_tail,
-    dropdown_line
+    dbc.Row([
+        dbc.Col([
+            dropdown_surface
+        ]),
+        dbc.Col([
+            dropdown_tail,
+        ])
+    ]),
+    dbc.Row([
+        dbc.Col([
+            dropdown_frame
+        ]),
+        dbc.Col([
+            dropdown_line
+        ])
+    ])
 ])
