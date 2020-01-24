@@ -24,3 +24,5 @@ def solve(inp):
     for i in toDelete:
         ret_dict.pop(i)
     return ret_dict
+
+# Thanks to OSI Digital
