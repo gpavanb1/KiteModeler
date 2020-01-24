@@ -10,16 +10,17 @@ def construct_input(args):
         'h1': args[0],
         'h2': args[1],
         'w1': args[2],
-        'B': args[3],
-        'K': args[4],
-        'wind_speed': args[5],
-        'altitude': args[6],
-        'line_length': args[7],
+        't': args[3],
+        'B': args[4],
+        'K': args[5],
+        'wind_speed': args[6],
+        'altitude': args[7],
+        'line_length': args[8],
         'env_name': "Earth",
-        'surface': args[8],
-        'frame': args[9],
-        'tail': args[10],
-        'line': args[11]
+        'surface': args[9],
+        'frame': args[10],
+        'tail': args[11],
+        'line': args[12]
     }
     return inp
 
@@ -61,6 +62,7 @@ def update_h1_min(b, k, h1):
               [Input('h1', 'value'),
                Input('h2', 'value'),
                Input('w1', 'value'),
+               Input('t', 'value'),
                Input('b', 'value'),
                Input('k', 'value'),
                Input('wind_speed', 'value'),

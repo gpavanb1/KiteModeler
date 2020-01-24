@@ -8,7 +8,7 @@ from .helper import dotdict
 
 def solve(inp):
     inp = dotdict(inp)
-    geom = DiamondGeometry(inp.h1, inp.h2, inp.w1)
+    geom = DiamondGeometry(inp.h1, inp.h2, inp.w1, inp.t)
     bridle = BridleGeometry(inp.B, inp.K, geom.h())
     fly = FlyParameters(inp.wind_speed, inp.altitude,
                         inp.line_length, inp.env_name)
