@@ -24,7 +24,7 @@ python index.py
 
 ## Sample
 
-<img src="sample/sample.png" width="600">
+<img src="sample/sample.PNG" width="600">
 
 ## Whom to contact?
 
