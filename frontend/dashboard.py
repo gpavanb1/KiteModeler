@@ -4,10 +4,8 @@ import dash_bootstrap_components as dbc
 
 def create(inp):
     res = {k: str(round(v, 3)) for k, v in inp.items()}
-    body = dbc.Container(
-        [
-            dbc.Row(
-                [
+    body = dbc.Container([
+                dbc.Row([
                     dbc.Col(
                         [
                             html.H4("Lift (gm)" + " " + res['_lift']),
@@ -20,23 +18,14 @@ def create(inp):
                     ),
                     dbc.Col(
                         [
-                            html.Img(id='image', src="", width="300px", height="300px")
-                        ]
-                    ),
-                    dbc.Col(
-                        [
                             html.H4("Surface Area (cm2)" + " " + res['_surface_area']),
                             html.H4("cp (cm)" + " " + res['_cp']),
                             html.H4("cg (cm)" + " " + res['_cg']),
                             html.H4("Range (m)" + " " + res['_range']),
                             html.H4("Height (m)" + " " + res['_height']),
                             html.H4("Temperature (K)" + " " + res['temperature'])
-                        ],
-                        className='text-right'
+                        ]
                     )
-                ],
-                justify='between'
-            )
-        ]
-    )
+                ])
+            ])
     return body

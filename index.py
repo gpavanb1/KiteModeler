@@ -14,7 +14,16 @@ from app import app
 app.layout = html.Div([
     html.H1(id='heading', children='Kite Modeler - Reboot'),
     html.Br(),
-    html.Div(id='dashboard-content'),
+    dbc.Container([
+        dbc.Row([
+            dbc.Col([
+                html.Img(id='image', src="", width="250px", height="250px")
+            ], width=4),
+            dbc.Col([
+                html.Div(id='dashboard-content')
+            ], width=8)
+        ])
+    ]),
     html.Br(),
     dbc.Container([
             dcc.Tabs([
@@ -30,8 +39,7 @@ app.layout = html.Div([
             dcc.Tab(label='Material', value='material', children=[html.Div([
                 material_components
             ])])
-            ], id='tabs', value='geometry'),
-            html.Div(id='tabs-content')
+            ], id='tabs', value='geometry')
     ])
 ])
 
