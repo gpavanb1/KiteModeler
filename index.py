@@ -17,7 +17,7 @@ app.layout = html.Div([
     dbc.Container([
         dbc.Row([
             dbc.Col([
-                html.Img(id='image', src="", width="300px", height="300px")
+                html.Img(id='image', src="", width="250px", height="250px")
             ], width=4),
             dbc.Col([
                 html.Div(id='dashboard-content')

@@ -38,8 +38,8 @@ class Dashboard:
         self._drag = self.drag(self._aoa_no_torque)
 
         # Source : https://www.grc.nasa.gov/WWW/K-12/airplane/kitefor.html
-        self._horiz_tension = self._drag
         self._vert_tension = self.vertical_tension()
+        self._horiz_tension = self.horiz_tension()
         self._tension = math.sqrt(pow(self._horiz_tension, 2) + pow(self._vert_tension, 2))
 
         # Height and range
@@ -99,7 +99,17 @@ class Dashboard:
         # Line length
         s = self.fly.line
         g = s * p
-        return self._lift - g - self._weight
+        ret = self._lift - g - self._weight
+        if ret >= 0:
+            return ret
+        else:
+            return 0.0
+
+    def horiz_tension(self):
+        if self._vert_tension > 0:
+            return self._drag
+        else:
+            return 0.0
 
     def catenary_equation(self, x):
         # Unit line weight
